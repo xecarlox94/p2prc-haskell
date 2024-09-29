@@ -1,1 +1,40 @@
+.idea
+vendor/
+bin/
+p2p-rendering/
+main
+server/docker/__pycache__
+p2p-rendering-computation
+p2prc
+config.json
+.vscode/
 
+#ignore generated iptables
+p2p/iptable/
+#ignore plugins added
+plugin/deploy/
+#ignore track container file
+client/trackcontainers/
+# Test generated files
+generate/p2prctest
+generate/Test
+#ignore windows exe files
+*.exe
+dist/
+# Ignore any sort of logs
+logs/
+
+# ignore docker image files
+server/docker/containers/
+*.h
+*.so
+
+# generic folder to ignore
+export/
+
+# Any testing file
+test*
+
+# Ignore public and private keys
+p2prc.publicKey
+p2prc.privateKey
