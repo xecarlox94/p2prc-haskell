@@ -74,18 +74,14 @@ typedef struct { void *data; GoInt len; GoInt cap; } GoSlice;
 extern "C" {
 #endif
 
-extern char* StartContainer(GoString IP);
-extern char* RemoveContainer(GoString IP, GoString ID);
-extern char* ViewPlugin();
-extern char* PullPlugin(GoString pluginUrl);
-extern char* DeletePlugin(GoString pluginName);
-extern char* ExecutePlugin(GoString pluginname, GoString ContainerID);
-extern char* GetSpecs(GoString IP);
-extern char* Init(GoString customConfig);
+extern char* StartContainer(char* IP);
+extern char* RemoveContainer(char* IP, char* ID);
+extern char* GetSpecs(char* IP);
+extern char* Init(char* customConfig);
 extern char* ViewIPTable();
 extern char* UpdateIPTable();
-extern char* EscapeFirewall(GoString HostOutsideNATIP, GoString HostOutsideNATPort, GoString internalPort);
-extern char* MapPort(GoString Port);
+extern char* EscapeFirewall(char* HostOutsideNATIP, char* HostOutsideNATPort, char* internalPort);
+extern char* MapPort(char* Port);
 extern char* Server();
 
 #ifdef __cplusplus
