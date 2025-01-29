@@ -10,7 +10,23 @@
   outputs = { nixpkgs, flake-utils, ... }:
     flake-utils.lib.eachDefaultSystem (system:
       let
-        pkgs = import nixpkgs { inherit system; };
+
+        config = {
+          packageOverrides = pkgs: {
+            haskellPackages = pkgs.haskellPackages.override {
+              overrides = haskellPackagesNew: haskellPackagesOld: {
+                p2prc-hs =
+                  haskellPackagesNew.callPackage ./p2prc-hs.nix { };
+              };
+            };
+          };
+        };
+
+        pkgs = import nixpkgs {
+          inherit system;
+          inherit config;
+        };
+
       in
       with pkgs;
       {
@@ -19,6 +35,7 @@
         devShells.default = mkShell {
             buildInputs = [
               cabal-install
+              cabal2nix
             ];
           };
       }
