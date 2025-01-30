@@ -1,11 +1,15 @@
 module Main where
 
 
+
 import P2PRC
-
-
+  ( runP2PRC
+  , MapPortRequest(MkMapPortRequest)
+  )
 
 main :: IO ()
 main = do
-  let api = p2prcAPI
-  putStrLn "Hello, Haskell!"
+  runP2PRC
+    ( MkMapPortRequest 8080 "jose.akilan.io"
+    )
+

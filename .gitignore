@@ -8,6 +8,8 @@ p2prc.PublicKeyBareMetal
 plugin
 server
 
+p2prc.publicKey
+
 haddocks/
 
 key.pem
