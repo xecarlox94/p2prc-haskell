@@ -3,25 +3,34 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs";
-    hsp2prc.url = "github:xecarlox94/p2p-rendering-computation?ref=nix-flake&dir=Bindings/Haskell";
+    p2prc.url = "github:xecarlox94/p2p-rendering-computation";
   };
 
-  outputs = { self, nixpkgs, hsp2prc }:
+  outputs = { self, nixpkgs, p2prc, ... }:
     let
-      pkgs = import nixpkgs { system = "x86_64-linux"; }; # Adjust for your system
-    in {
-      packages.default = pkgs.haskellPackages.ghcWithPackages (haskellPkgs: [
-        hsp2prc.packages.${pkgs.system}.default
-      ]);
 
-      devShell.default = pkgs.mkShell {
-        buildInputs = with pkgs; [
-          cabal-install
-          haskell.compiler.ghc96
-          zlib.dev
-          p2prc.outputs.packages.${system}.default
-        ];
+      system = "x86_64-linux";
+
+      npkgs = import nixpkgs {
+        inherit system;
       };
+
+    in {
+
+      # packages.${system}.default = haskellPackages.developPackage {
+        # root = ./.;
+      # };
+
+      devShells.${system}.default = npkgs.mkShell {
+        buildInputs = [
+          p2prc.packages.${system}.default
+          npkgs.cabal-install
+          npkgs.cabal2nix
+          npkgs.zlib
+        ];
+
+      };
+
 
     };
 }

@@ -1,0 +1,6 @@
+packages: ./*.cabal
+
+source-repository-package
+   type:     git
+   location: https://github.com/xecarlox94/p2prc-haskell
+   subdir:   .
